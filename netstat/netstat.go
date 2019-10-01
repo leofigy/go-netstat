@@ -15,6 +15,13 @@ func (s *SockAddr) String() string {
 	return fmt.Sprintf("%v:%d", s.IP, s.Port)
 }
 
+func (s *SockAddr) KnownPort() string {
+	if service, ok := Ports[s.Port]; ok {
+	    return service
+	}
+	return "Unknown"
+}
+
 // SockTabEntry type represents each line of the /proc/net/[tcp|udp]
 type SockTabEntry struct {
 	ino        string
